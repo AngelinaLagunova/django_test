@@ -46,9 +46,6 @@ let deleteModal = null
 let editModalElement = null
 let editModal = null
 
-document.addEventListener('DOMContentLoaded', function() {
-    
-
 window.onload = function() {
     initDeleteModal()
     initEditModal()
@@ -270,7 +267,7 @@ function renderTable() {
             return response.json()
         })
         .then(data => {
-            fillTable(COLUMNS, data, 'main-table')
+            fillTable(COLUMNS, data)
             initTableControls()
 
         })
@@ -329,7 +326,7 @@ function initTableControls(){
     });
 }
 
- function fillTable(columns, data, tableName){
+function fillTable(columns, data, tableName="main-table"){
     let table = document.getElementById(tableName)
     table.innerHTML = '';
     let tableHead = document.createElement("thead")
@@ -362,5 +359,3 @@ function initTableControls(){
     table.appendChild(tableBoby);
 
 }
-
-});
