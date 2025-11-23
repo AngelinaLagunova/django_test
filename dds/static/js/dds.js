@@ -235,7 +235,7 @@ function getFilterData() {
     }
     const dateTo = document.getElementById("dateTo").value || null
     if (dateTo){
-        filterData.date_before = dateFrom
+        filterData.date_before = dateTo
     }
 
     const status = document.getElementById("status-filter").value || null
