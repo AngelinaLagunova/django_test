@@ -60,13 +60,10 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = ('id', 'name', 'type_id',)
-
-    def validate(self, data):
-        category = self.instance or data.get('id')
-        if category and category.type.id != data['type'].id:
-            raise serializers.ValidationError("Категория не соответствует выбранному типу.")
-        return data
+        fields = (
+            'id',
+            'name',
+            'type_id',)
 
 
 class SubcategorySerializer(serializers.ModelSerializer):
@@ -76,12 +73,9 @@ class SubcategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Subcategory
-        fields = ('id', 'name', 'category_id', 'type_id',)
+        fields = (
+            'id',
+            'name',
+            'category_id',
+            'type_id',)
 
-    def validate(self, data):
-        category = data.get('category')
-        category_type = category.type
-        type_id = data.get('category__type')
-        if category_type != type_id:
-            raise serializers.ValidationError("Категория не соответствует выбранному типу.")
-        return data
